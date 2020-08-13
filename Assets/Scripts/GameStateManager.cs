@@ -2,50 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class GameStateManager : MonoBehaviour {
 
     public GameObject gameplayUI, endUI;
 
-    public Personaje personajePrincipal;
+    public PlayerCharacter mainCharacter;
     public ScoreManager scoreManager;
 
-    private bool juegoTerminado = false;
+    private bool isGameFinished = false;
 
 	void Update () {
-        if (!juegoTerminado)
+        if (!isGameFinished)
         {
-            if (personajePrincipal.IsCharacterDead()) AcabarJuego();
-
+            if (mainCharacter.IsCharacterDead()) EndTheGame();
         }
     }
 
-
-    void AcabarJuego()
+    void EndTheGame()
     {
-        juegoTerminado = true;
-        personajePrincipal.DetenerPersonaje();
+        isGameFinished = true;
+        mainCharacter.StopCharacter();
     
-     
         scoreManager.EndGame();
 
-
-        StartCoroutine(DelayEnseñarInterfaz());
+        StartCoroutine(DelaySceneTransition());
     }
 
-    [ContextMenu("Reiniciar el juego")]
-    public void ReiniciarJuego()
+    [ContextMenu("Restart the Game")]
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void VolverAlMenu()
+    public void GoBackToMainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(Constants.Scenes.homeMenu);
     }
 
-
-    IEnumerator DelayEnseñarInterfaz()
+    IEnumerator DelaySceneTransition()
     {
         yield return new WaitForSeconds(2);
      

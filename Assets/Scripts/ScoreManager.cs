@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -46,7 +47,7 @@ public class ScoreManager : MonoBehaviour {
         if (maxScore < totalScore)
         {
             txtScoreMessage += "\n New highscore!";
-            PlayerPrefs.SetInt("Score", totalScore);
+            PlayerPrefs.SetInt(Constants.Prefs.score, totalScore);
             PlayerPrefs.Save();
         }
 

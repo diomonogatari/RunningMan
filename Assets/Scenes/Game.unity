@@ -393,7 +393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Volver al men\xFA"
+  m_Text: Back home
 --- !u!222 &19378337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Juego Acabado
+  m_Text: End of the line
 --- !u!222 &87077852
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8587,7 +8587,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Volver a jugar
+  m_Text: Play again?
 --- !u!222 &1289426663
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11278,7 +11278,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -13262,7 +13262,7 @@ GameObject:
   - component: {fileID: 1838763062}
   - component: {fileID: 1838763061}
   m_Layer: 5
-  m_Name: PuntuacionTotal
+  m_Name: TotalScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13701,7 +13701,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -13782,7 +13782,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14307,12 +14307,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1971625477}
   m_Layer: 5
-  m_Name: JuegoAcabado
+  m_Name: EndGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1971625477
 RectTransform:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets.Scripts;
 
 public class MenuManager : MonoBehaviour {
 
@@ -10,14 +11,14 @@ public class MenuManager : MonoBehaviour {
 
     private void Start()
     {
-        int maxScore = PlayerPrefs.GetInt("Score", 0);
+        int maxScore = PlayerPrefs.GetInt(Constants.Scenes.game, 0);
         string maxScoreString = "Max Score \n " + maxScore;
         maxScoreText.text = maxScoreString;
     }
 
     public void Play()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(Constants.Scenes.game);
     }
 
     public void Exit()

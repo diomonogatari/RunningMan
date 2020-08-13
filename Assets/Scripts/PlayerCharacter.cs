@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts;
 
-public class Personaje : MonoBehaviour
+public class PlayerCharacter : MonoBehaviour
 {
 
     public float acceleration = 0.0015f;
@@ -38,7 +39,8 @@ public class Personaje : MonoBehaviour
     {
         //Vamos a ir incrementando la velocidad a la que tiene que ir en intervalos regulares hasta alcanzar la velocidad que le corresponde
         speedMultiply += acceleration;
-        if (speedMultiply > 1) speedMultiply = 1;
+        if (speedMultiply > 1)
+            speedMultiply = 1;
 
         float realSpeed = speedMultiply * speed;
         float realLeftRightSpeed = speedMultiply * leftRightSpeed;
@@ -46,12 +48,12 @@ public class Personaje : MonoBehaviour
 
         Vector3 movement = Vector3.forward * realSpeed * Time.deltaTime;
 
-        if (Input.GetKey("left"))
+        if (Input.GetKey(Constants.Input.left))
         {
             movement += Vector3.left * realLeftRightSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey(Constants.Input.right))
         {
             movement += Vector3.right * realLeftRightSpeed * Time.deltaTime;
         }
@@ -65,14 +67,13 @@ public class Personaje : MonoBehaviour
                 EndImmunity();
             }
         }
-
     }
 
-    public void DetenerPersonaje()
+    public void StopCharacter()
     {
         speed = 0;
         leftRightSpeed = 0;
-        animator.SetTrigger("Detener");
+        animator.SetTrigger(Constants.AnimationVariables.stopRunningTrigger);
     }
 
     public void ResetHP()
@@ -118,7 +119,7 @@ public class Personaje : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == Constants.Tags.enemy)
         {
             BlockHit();
         }
