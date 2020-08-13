@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 136847106874998550}
   - component: {fileID: 114466200298351594}
   m_Layer: 0
-  m_Name: Personaje
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2688,10 +2688,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8187fc1b6f6f6334189eb4be8b1745ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aceleracion: 0.0015
   speed: 5
   leftRightSpeed: 5
   segundosInmune: 2
   vidaMaxima: 3
+  hitFX: {fileID: 0}
+  hitSound: {fileID: 0}
+  vidaActual: 0
+  rigidBody: {fileID: 0}
+  animator: {fileID: 0}
+  isInmune: 0
+  nextTimeKickInmune: 0
+  speedMultiply: 0
 --- !u!124 &124571726222797424
 Behaviour:
   m_ObjectHideFlags: 1

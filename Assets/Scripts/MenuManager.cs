@@ -6,24 +6,21 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-    public Text maximaPuntuacionText;
+    public Text maxScoreText;
 
     private void Start()
     {
-        int maximaPuntuacion = PlayerPrefs.GetInt("Puntuacion", 0);
-        string maximaPuntuacionString = "Maxima puntuación \n " + maximaPuntuacion;
-        maximaPuntuacionText.text = maximaPuntuacionString;
-
+        int maxScore = PlayerPrefs.GetInt("Score", 0);
+        string maxScoreString = "Max Score \n " + maxScore;
+        maxScoreText.text = maxScoreString;
     }
 
-
-    public void Jugar()
+    public void Play()
     {
-        SceneManager.LoadScene("Juego");
+        SceneManager.LoadScene("Game");
     }
 
-
-    public void Salir()
+    public void Exit()
     {
         Application.Quit();
     }

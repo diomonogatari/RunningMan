@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Personaje : MonoBehaviour {
+public class Personaje : MonoBehaviour
+{
 
-    public float aceleracion = 0.0015f;
+    public float acceleration = 0.0015f;
     public float speed = 5;
     public float leftRightSpeed = 5;
-    public int segundosInmune = 3;
-    public int vidaMaxima;
+    public int secondsImmune = 3;
+    public int maxHP;
     public GameObject hitFX;
     public AudioSource hitSound;
 
-    private int vidaActual;
+    private int currentHP;
     private Rigidbody rigidBody;
     private Animator animator;
 
-    private bool isInmune = false;
+    private bool isImmune = false;
 
     private float nextTimeKickInmune = 0;
 
@@ -26,44 +27,42 @@ public class Personaje : MonoBehaviour {
     {
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        
+
         rigidBody.freezeRotation = true;
 
-        vidaActual =  vidaMaxima;
-
-
-	}
+        currentHP = maxHP;
+    }
 
     // Update is called once per frame
     void Update()
     {
         //Vamos a ir incrementando la velocidad a la que tiene que ir en intervalos regulares hasta alcanzar la velocidad que le corresponde
-        speedMultiply += aceleracion;
+        speedMultiply += acceleration;
         if (speedMultiply > 1) speedMultiply = 1;
 
         float realSpeed = speedMultiply * speed;
         float realLeftRightSpeed = speedMultiply * leftRightSpeed;
 
 
-        Vector3 movimiento = Vector3.forward * realSpeed * Time.deltaTime;
+        Vector3 movement = Vector3.forward * realSpeed * Time.deltaTime;
 
         if (Input.GetKey("left"))
         {
-            movimiento += Vector3.left * realLeftRightSpeed * Time.deltaTime;
+            movement += Vector3.left * realLeftRightSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey("right"))
         {
-            movimiento += Vector3.right * realLeftRightSpeed * Time.deltaTime;
+            movement += Vector3.right * realLeftRightSpeed * Time.deltaTime;
         }
 
-        transform.position += movimiento;
+        transform.position += movement;
 
-        if (isInmune)
+        if (isImmune)
         {
             if (Time.timeSinceLevelLoad >= nextTimeKickInmune)
             {
-                AcabarInmunidad();
+                EndImmunity();
             }
         }
 
@@ -76,50 +75,52 @@ public class Personaje : MonoBehaviour {
         animator.SetTrigger("Detener");
     }
 
-    public void RestarVida()
+    public void ResetHP()
     {
-        if (!isInmune)
+        if (!isImmune)
         {
             hitFX.SetActive(true);
             hitSound.pitch = Random.Range(0.8f, 1.2f);
             hitSound.Play();
-            vidaActual--;
-            Debug.Log("Vida actual " + vidaActual);
+            currentHP--;
+            Debug.Log("Current HP " + currentHP);
         }
     }
 
-    public bool EstaMuerto()
+    public bool IsCharacterDead()
     {
-        if (vidaActual <= 0) return true;
-        else return false;
+        if (currentHP <= 0)
+            return true;
+        else
+            return false;
     }
 
-    public void AcabarInmunidad()
+    public void EndImmunity()
     {
         //rigidBody.isKinematic = false;
-        isInmune = false;
+        isImmune = false;
     }
-    public void EmpezarInmunidad()
+    public void StartImmunity()
     {
-        if (!isInmune)
+        if (!isImmune)
         {
             //rigidBody.isKinematic = true;
-            isInmune = true;
-            nextTimeKickInmune = Time.timeSinceLevelLoad + segundosInmune;
+            isImmune = true;
+            nextTimeKickInmune = Time.timeSinceLevelLoad + secondsImmune;
         }
     }
 
-    public void BloqueGolpeado()
+    public void BlockHit()
     {
-        RestarVida();
-        EmpezarInmunidad();
+        ResetHP();
+        StartImmunity();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
-            BloqueGolpeado();
+            BlockHit();
         }
     }
 }

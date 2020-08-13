@@ -15,7 +15,7 @@ public class GameStateManager : MonoBehaviour {
 	void Update () {
         if (!juegoTerminado)
         {
-            if (personajePrincipal.EstaMuerto()) AcabarJuego();
+            if (personajePrincipal.IsCharacterDead()) AcabarJuego();
 
         }
     }
@@ -27,7 +27,7 @@ public class GameStateManager : MonoBehaviour {
         personajePrincipal.DetenerPersonaje();
     
      
-        scoreManager.AcabarJuego();
+        scoreManager.EndGame();
 
 
         StartCoroutine(DelayEnseñarInterfaz());

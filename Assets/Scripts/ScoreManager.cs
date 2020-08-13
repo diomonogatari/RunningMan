@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public Text puntuacionGameplayText, puntuacionFinalText; 
+    public Text scoreGameplayText, scoreFinalText; 
 
     private int scorePerTick = 100;
 
     private float nextTimeToScore;
 
     private int totalScore = 0;
-    private bool juegoAcabado = false;
+    private bool isGameFinished = false;
     // Use this for initialization
     void Start () {
-        //Empezamos teniendo el cuenta en tiempo para que el score no empiece ya en 100
+        
         nextTimeToScore = Time.timeSinceLevelLoad + 1;
 
     }
@@ -23,41 +23,41 @@ public class ScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!juegoAcabado)
+        if (!isGameFinished)
         {
             if (Time.timeSinceLevelLoad >= nextTimeToScore)
             {
-                AumentarScore();
+                IncreaseScore();
                 nextTimeToScore = Time.timeSinceLevelLoad + 1;
             }
         }
     }
 
-    public void AcabarJuego()
+    public void EndGame()
     {
-        juegoAcabado = true;
+        isGameFinished = true;
 
-        int maximaPuntuacion = PlayerPrefs.GetInt("Puntuacion", 0);
-        int puntuacionTotal = GetTotalScore();
-        string puntuacionString = "Tu puntuación ha sido de \n " + puntuacionTotal;
+        int maxScore = PlayerPrefs.GetInt("Score", 0);
+        int totalScore = GetTotalScore();
+        string txtScoreMessage = "Your score is \n " + totalScore;
      
 
 
-        if (maximaPuntuacion < puntuacionTotal)
+        if (maxScore < totalScore)
         {
-            puntuacionString += "\n ¡Nueva puntuación maxima alcanzada!";
-            PlayerPrefs.SetInt("Puntuacion", puntuacionTotal);
+            txtScoreMessage += "\n New highscore!";
+            PlayerPrefs.SetInt("Score", totalScore);
             PlayerPrefs.Save();
         }
 
-        puntuacionFinalText.text = puntuacionString;
+        scoreFinalText.text = txtScoreMessage;
     }
 
 
-    void AumentarScore()
+    void IncreaseScore()
     {
         totalScore += scorePerTick;
-        puntuacionGameplayText.text = totalScore.ToString();
+        scoreGameplayText.text = totalScore.ToString();
     }
 
     public int GetTotalScore()
