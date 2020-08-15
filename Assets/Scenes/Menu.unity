@@ -1250,7 +1250,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1658123270}
-        m_MethodName: Jugar
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844d16588221e74399554e793d33c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScoreText: {fileID: 0}
+  maxScoreText: {fileID: 1992637117}
 --- !u!4 &1658123271
 Transform:
   m_ObjectHideFlags: 0
