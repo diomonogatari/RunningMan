@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour {
 
     private void Start()
     {
-        int maxScore = PlayerPrefs.GetInt(Constants.Scenes.game, 0);
+        int maxScore = PlayerPrefs.GetInt(Constants.Prefs.score, 0);
         string maxScoreString = "Max Score \n " + maxScore;
         maxScoreText.text = maxScoreString;
     }
