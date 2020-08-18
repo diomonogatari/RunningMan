@@ -124,4 +124,10 @@ public class PlayerCharacter : MonoBehaviour
             BlockHit();
         }
     }
+
+    public int GetCurrentHp()
+    {
+        return this.currentHP;
+    }
+
 }
