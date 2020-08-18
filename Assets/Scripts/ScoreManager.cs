@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour {
     private int scoreMultiplierFactor = 1;
 
     private float nextTimeToScore;
+    private int coinsCollected = 0;
 
     private int totalScore = 0;
     private bool isGameFinished = false;
@@ -19,6 +20,7 @@ public class ScoreManager : MonoBehaviour {
     void Start () {
         
         nextTimeToScore = Time.timeSinceLevelLoad + 1;
+        coinsCollectedText.text = coinsCollected.ToString();//starts at 0
 
     }
 	
@@ -64,6 +66,11 @@ public class ScoreManager : MonoBehaviour {
         totalScore += incrementValue;
         scoreGameplayText.text = totalScore.ToString();
         scoreMultiplierText.text = "x"+scoreMultiplierFactor.ToString();
+    }
+    public void IncreaseCoin()
+    {
+        coinsCollected++;
+        coinsCollectedText.text = coinsCollected.ToString();
     }
 
     public int GetTotalScore()

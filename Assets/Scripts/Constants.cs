@@ -32,5 +32,9 @@ namespace Assets.Scripts
         {
             public const string score = "Score";
         }
+        public static class Collectables
+        {
+            public const string coin = "GoldCoin";
+        }
     }
 }

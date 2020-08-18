@@ -18,6 +18,8 @@ public class PlayerCharacter : MonoBehaviour
     private Rigidbody rigidBody;
     private Animator animator;
 
+    private ScoreManager scoreManager;
+
     private bool isImmune = false;
 
     private float nextTimeKickInmune = 0;
@@ -32,6 +34,8 @@ public class PlayerCharacter : MonoBehaviour
         rigidBody.freezeRotation = true;
 
         currentHP = maxHP;
+
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -122,6 +126,11 @@ public class PlayerCharacter : MonoBehaviour
         if (other.tag == Constants.Tags.enemy)
         {
             BlockHit();
+        }
+        if(other.name == Constants.Collectables.coin)
+        {
+            scoreManager.IncreaseCoin();
+            Destroy(other.transform.parent.gameObject);
         }
     }
 

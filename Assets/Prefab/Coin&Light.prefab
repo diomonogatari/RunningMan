@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4507612582309206}
   - component: {fileID: 114232067791101300}
+  - component: {fileID: 135055065071933388}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Untagged
@@ -84,8 +85,6 @@ GameObject:
   - component: {fileID: 4354470651538130}
   - component: {fileID: 33659587941314708}
   - component: {fileID: 23686349332577546}
-  - component: {fileID: 135841488125981470}
-  - component: {fileID: 95560404812336852}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Untagged
@@ -154,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837862320788694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49, y: -1.08, z: 11.162}
+  m_LocalPosition: {x: 0.49, y: -1.08, z: 5.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4507612582309206}
@@ -203,23 +202,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946577162384366}
   m_Mesh: {fileID: 4300000, guid: 5f9ee1799e7f21548ba0dd65ac83ea7f, type: 3}
---- !u!95 &95560404812336852
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1946577162384366}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5510681b9f128ff40aad9cc43123321f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108103813239442352
 Light:
   m_ObjectHideFlags: 1
@@ -268,14 +250,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 3
---- !u!135 &135841488125981470
+--- !u!135 &135055065071933388
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1946577162384366}
+  m_GameObject: {fileID: 1279245413340210}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.005059907
