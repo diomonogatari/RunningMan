@@ -876,6 +876,10 @@ Prefab:
       propertyPath: m_Name
       value: Coin&Light (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1946577162384366, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
+      propertyPath: m_Name
+      value: GoldCoinMesh
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
   m_IsPrefabParent: 0
@@ -9942,6 +9946,10 @@ Prefab:
       propertyPath: m_Name
       value: Coin&Light (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1946577162384366, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
+      propertyPath: m_Name
+      value: GoldCoinMesh
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
   m_IsPrefabParent: 0
@@ -11470,6 +11478,10 @@ Prefab:
     - target: {fileID: 1837862320788694, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
       propertyPath: m_Name
       value: Coin&Light (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946577162384366, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
+      propertyPath: m_Name
+      value: GoldCoinMesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
@@ -15288,6 +15300,24 @@ Prefab:
     - target: {fileID: 4844570564043344, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82994557188748374, guid: a7327caf4c28d7f4eac65bba9605788c,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ffddcf500951f154eaccb4a37038c224, type: 3}
+    - target: {fileID: 82994557188748374, guid: a7327caf4c28d7f4eac65bba9605788c,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946577162384366, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946577162384366, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}
+      propertyPath: m_Name
+      value: GoldCoinMesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7327caf4c28d7f4eac65bba9605788c, type: 2}

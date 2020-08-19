@@ -39,7 +39,7 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Vamos a ir incrementando la velocidad a la que tiene que ir en intervalos regulares hasta alcanzar la velocidad que le corresponde
         speedMultiply += acceleration;
@@ -129,8 +129,17 @@ public class PlayerCharacter : MonoBehaviour
         }
         if(other.name == Constants.Collectables.coin)
         {
-            scoreManager.IncreaseCoin();
-            Destroy(other.transform.parent.gameObject);
+            other.enabled = false; //disable the collider to not interfere
+            var child = other.gameObject.transform.GetChild(0);
+
+            Destroy(child.gameObject);//destroy the child as it only contains the mesh and material
+
+            scoreManager.IncreaseCoin(); //add score
+
+            var coinSound = other.gameObject.GetComponent<AudioSource>();
+            coinSound.Play(); //play the sound
+
+            Destroy(other.transform.parent.gameObject,3);
         }
     }
 
