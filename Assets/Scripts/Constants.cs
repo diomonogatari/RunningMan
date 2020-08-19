@@ -11,6 +11,7 @@ namespace Assets.Scripts
         public static class Input
         {
             public const string horizontal = "Horizontal";
+            public const string jump = "Jump";
         }
 
         public static class Scenes
