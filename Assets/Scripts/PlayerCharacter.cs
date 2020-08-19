@@ -52,14 +52,9 @@ public class PlayerCharacter : MonoBehaviour
 
         Vector3 movement = Vector3.forward * realSpeed * Time.deltaTime;
 
-        if (Input.GetKey(Constants.Input.left))
+        if (Input.GetButton(Constants.Input.horizontal))
         {
-            movement += Vector3.left * realLeftRightSpeed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(Constants.Input.right))
-        {
-            movement += Vector3.right * realLeftRightSpeed * Time.deltaTime;
+            movement += new Vector3(Input.GetAxis(Constants.Input.horizontal.Normalize()),0,0) * realLeftRightSpeed * Time.deltaTime;
         }
 
         transform.position += movement;
