@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts;
 
@@ -11,13 +12,17 @@ public class GameStateManager : MonoBehaviour {
     public PlayerCharacter mainCharacter;
     public ScoreManager scoreManager;
 
+    public Text hpText, powerUpTimerText;
+
     private bool isGameFinished = false;
+    
 
 	void Update () {
         if (!isGameFinished)
         {
             if (mainCharacter.IsCharacterDead()) EndTheGame();
         }
+        hpText.text = mainCharacter.GetCurrentHp().ToString();
     }
 
     void EndTheGame()

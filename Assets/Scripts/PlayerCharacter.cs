@@ -18,6 +18,8 @@ public class PlayerCharacter : MonoBehaviour
     private Rigidbody rigidBody;
     private Animator animator;
 
+    private ScoreManager scoreManager;
+
     private bool isImmune = false;
 
     private float nextTimeKickInmune = 0;
@@ -32,10 +34,12 @@ public class PlayerCharacter : MonoBehaviour
         rigidBody.freezeRotation = true;
 
         currentHP = maxHP;
+
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Vamos a ir incrementando la velocidad a la que tiene que ir en intervalos regulares hasta alcanzar la velocidad que le corresponde
         speedMultiply += acceleration;
@@ -48,14 +52,9 @@ public class PlayerCharacter : MonoBehaviour
 
         Vector3 movement = Vector3.forward * realSpeed * Time.deltaTime;
 
-        if (Input.GetKey(Constants.Input.left))
+        if (Input.GetButton(Constants.Input.horizontal))
         {
-            movement += Vector3.left * realLeftRightSpeed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(Constants.Input.right))
-        {
-            movement += Vector3.right * realLeftRightSpeed * Time.deltaTime;
+            movement += new Vector3(Input.GetAxis(Constants.Input.horizontal.Normalize()),0,0) * realLeftRightSpeed * Time.deltaTime;
         }
 
         transform.position += movement;
@@ -123,5 +122,25 @@ public class PlayerCharacter : MonoBehaviour
         {
             BlockHit();
         }
+        if(other.name == Constants.Collectables.coin)
+        {
+            other.enabled = false; //disable the collider to not interfere
+            var child = other.gameObject.transform.GetChild(0);
+
+            Destroy(child.gameObject);//destroy the child as it only contains the mesh and material
+
+            scoreManager.IncreaseCoin(); //add score
+
+            var coinSound = other.gameObject.GetComponent<AudioSource>();
+            coinSound.Play(); //play the sound
+
+            Destroy(other.transform.parent.gameObject,3);
+        }
     }
+
+    public int GetCurrentHp()
+    {
+        return this.currentHP;
+    }
+
 }

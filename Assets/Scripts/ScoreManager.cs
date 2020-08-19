@@ -6,11 +6,13 @@ using Assets.Scripts;
 
 public class ScoreManager : MonoBehaviour {
 
-    public Text scoreGameplayText, scoreFinalText; 
+    public Text scoreGameplayText, scoreFinalText, scoreMultiplierText, coinsCollectedText; 
 
     private int scorePerTick = 100;
+    private int scoreMultiplierFactor = 1;
 
     private float nextTimeToScore;
+    private int coinsCollected = 0;
 
     private int totalScore = 0;
     private bool isGameFinished = false;
@@ -18,6 +20,7 @@ public class ScoreManager : MonoBehaviour {
     void Start () {
         
         nextTimeToScore = Time.timeSinceLevelLoad + 1;
+        coinsCollectedText.text = coinsCollected.ToString();//starts at 0
 
     }
 	
@@ -30,6 +33,7 @@ public class ScoreManager : MonoBehaviour {
             {
                 IncreaseScore();
                 nextTimeToScore = Time.timeSinceLevelLoad + 1;
+                scoreMultiplierFactor++;
             }
         }
     }
@@ -57,8 +61,16 @@ public class ScoreManager : MonoBehaviour {
 
     void IncreaseScore()
     {
-        totalScore += scorePerTick;
+        int incrementValue = scorePerTick*scoreMultiplierFactor;
+
+        totalScore += incrementValue;
         scoreGameplayText.text = totalScore.ToString();
+        scoreMultiplierText.text = "x"+scoreMultiplierFactor.ToString();
+    }
+    public void IncreaseCoin()
+    {
+        coinsCollected++;
+        coinsCollectedText.text = coinsCollected.ToString();
     }
 
     public int GetTotalScore()

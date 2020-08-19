@@ -10,8 +10,7 @@ namespace Assets.Scripts
 
         public static class Input
         {
-            public const string right = "right";
-            public const string left = "left";
+            public const string horizontal = "Horizontal";
         }
 
         public static class Scenes
@@ -31,6 +30,10 @@ namespace Assets.Scripts
         public static class Prefs
         {
             public const string score = "Score";
+        }
+        public static class Collectables
+        {
+            public const string coin = "GoldCoin";
         }
     }
 }
