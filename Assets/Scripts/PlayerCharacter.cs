@@ -13,11 +13,13 @@ public class PlayerCharacter : MonoBehaviour
     public int maxHP;
     public GameObject hitFX;
     public AudioSource hitSound;
+    public float jumpForce;
 
     private int currentHP;
     private Rigidbody rigidBody;
     private Animator animator;
 
+    private bool isGrounded = true;
     private ScoreManager scoreManager;
 
     private bool isImmune = false;
@@ -54,7 +56,12 @@ public class PlayerCharacter : MonoBehaviour
 
         if (Input.GetButton(Constants.Input.horizontal))
         {
-            movement += new Vector3(Input.GetAxis(Constants.Input.horizontal.Normalize()),0,0) * realLeftRightSpeed * Time.deltaTime;
+            movement += new Vector3(Input.GetAxis(Constants.Input.horizontal.Normalize()), 0, 0) * realLeftRightSpeed * Time.deltaTime;
+        }
+        if (Input.GetButton(Constants.Input.jump) && isGrounded)
+        {
+            rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
         }
 
         transform.position += movement;
@@ -122,7 +129,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             BlockHit();
         }
-        if(other.name == Constants.Collectables.coin)
+        if (other.name == Constants.Collectables.coin)
         {
             other.enabled = false; //disable the collider to not interfere
             var child = other.gameObject.transform.GetChild(0);
@@ -134,9 +141,15 @@ public class PlayerCharacter : MonoBehaviour
             var coinSound = other.gameObject.GetComponent<AudioSource>();
             coinSound.Play(); //play the sound
 
-            Destroy(other.transform.parent.gameObject,3);
+            Destroy(other.transform.parent.gameObject, 3);
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
+    }
+
 
     public int GetCurrentHp()
     {
