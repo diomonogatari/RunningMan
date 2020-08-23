@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 20991778643829816}
   - component: {fileID: 124571726222797424}
   - component: {fileID: 81928126972200220}
+  - component: {fileID: 45688434091321672}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2267,13 +2268,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313636993201670}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 6.49, z: -7.47}
+  m_LocalRotation: {x: 0.23963499, y: 0, z: 0, w: 0.9708631}
+  m_LocalPosition: {x: 0, y: 6.19, z: -6.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4724532420386300}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.73, y: 0, z: 0}
 --- !u!4 &4858970261949028
 Transform:
   m_ObjectHideFlags: 1
@@ -2351,7 +2352,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253365307278792}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.0136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4802417399947532}
@@ -2592,7 +2593,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7058823, g: 1, b: 0.98782957, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2601,7 +2602,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2701,6 +2702,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250651426199000}
   m_Mesh: {fileID: 4300000, guid: 2ab0893f5bba9b243b65e309e78089d0, type: 3}
+--- !u!45 &45688434091321672
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313636993201670}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 1d3f5254e25764546b2211aa1dd32efe, type: 2}
 --- !u!54 &54900321409720206
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -3006,13 +3015,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8187fc1b6f6f6334189eb4be8b1745ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0.0015
-  speed: 7
-  leftRightSpeed: 7
+  acceleration: 0.001
+  speed: 13
+  leftRightSpeed: 8
   secondsImmune: 3
   maxHP: 3
   hitFX: {fileID: 1402861920343386}
   hitSound: {fileID: 82340203665582468}
+  jumpForce: 575
+  cameraTurningRate: 0.8
 --- !u!124 &124571726222797424
 Behaviour:
   m_ObjectHideFlags: 1

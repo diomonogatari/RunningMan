@@ -14,6 +14,8 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject hitFX;
     public AudioSource hitSound;
     public float jumpForce;
+    public float cameraTurningRate = 0.8f;
+    public float REALSPEED = 0;
 
     private int currentHP;
     private Rigidbody rigidBody;
@@ -21,8 +23,13 @@ public class PlayerCharacter : MonoBehaviour
 
     private bool isGrounded = true;
     private ScoreManager scoreManager;
+    private bool isAccelerationLimited = true;
 
     private bool isImmune = false;
+
+    private bool isCameraAllowedToRotate = false;
+    private Vector3 cameraDesiredRotation;
+    private int cameraDesiredFov = 100;
 
     private float nextTimeKickInmune = 0;
 
@@ -35,6 +42,8 @@ public class PlayerCharacter : MonoBehaviour
 
         rigidBody.freezeRotation = true;
 
+        cameraDesiredRotation = new Vector3(5, 0, 0);
+
         currentHP = maxHP;
 
         scoreManager = FindObjectOfType<ScoreManager>();
@@ -45,12 +54,12 @@ public class PlayerCharacter : MonoBehaviour
     {
         //Vamos a ir incrementando la velocidad a la que tiene que ir en intervalos regulares hasta alcanzar la velocidad que le corresponde
         speedMultiply += acceleration;
-        if (speedMultiply > 1)
+        if (speedMultiply > 1 && isAccelerationLimited)
             speedMultiply = 1;
 
         float realSpeed = speedMultiply * speed;
         float realLeftRightSpeed = speedMultiply * leftRightSpeed;
-
+        REALSPEED = realSpeed;
 
         Vector3 movement = Vector3.forward * realSpeed * Time.deltaTime;
 
@@ -73,6 +82,8 @@ public class PlayerCharacter : MonoBehaviour
                 EndImmunity();
             }
         }
+
+        CheckIfRotateCamera();
     }
 
     public void StopCharacter()
@@ -125,11 +136,11 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Constants.Tags.enemy)
+        if (other.tag.Equals(Constants.Tags.enemy))
         {
             BlockHit();
         }
-        if (other.name == Constants.Collectables.coin)
+        if (other.name.Equals(Constants.Collectables.coin))
         {
             other.enabled = false; //disable the collider to not interfere
             var child = other.gameObject.transform.GetChild(0);
@@ -143,6 +154,10 @@ public class PlayerCharacter : MonoBehaviour
 
             Destroy(other.transform.parent.gameObject, 3);
         }
+        if (other.tag.Equals(Constants.Tags.newPhase))
+        {
+            StartNewPhase();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -150,6 +165,39 @@ public class PlayerCharacter : MonoBehaviour
         isGrounded = true;
     }
 
+    void StartNewPhase()
+    {   // start the rotation
+        isCameraAllowedToRotate = true;
+
+        //no speed limiter
+        isAccelerationLimited = false;
+        //gotta go fast
+    }
+
+    #region CameraRotations
+    void RotateCamera()
+    {
+        if (!Camera.main.transform.eulerAngles.Equals(this.cameraDesiredRotation) && !Camera.main.fieldOfView.Equals(cameraDesiredFov)) //if fov and angle isn't what we want, rotate
+        {
+            //Camera.main.transform.eulerAngles = new Vector3(5, 0, 0);
+            Camera.main.transform.eulerAngles = Vector3.Lerp(Camera.main.transform.eulerAngles, cameraDesiredRotation, cameraTurningRate * Time.fixedDeltaTime);
+            //camera fov increase
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, this.cameraDesiredFov, cameraTurningRate * Time.fixedDeltaTime);
+        }
+        else
+        {
+            isCameraAllowedToRotate = false; //desired rotation achieved
+        }
+
+    }
+    void CheckIfRotateCamera()
+    {
+        if (this.isCameraAllowedToRotate)//if camera is allowed means that the trigger was reached and the camera is not at the desired position
+        {
+            RotateCamera();
+        }
+    }
+    #endregion
 
     public int GetCurrentHp()
     {

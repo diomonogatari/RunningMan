@@ -26,6 +26,8 @@ namespace Assets.Scripts
             public const string gameController = "GameController";
             public const string mainCamera = "MainCamera";
             public const string player = "Player";
+            public const string newPhase = "NewPhase";
+            public const string sun = "Sun";
         }
 
         public static class Prefs
@@ -35,6 +37,14 @@ namespace Assets.Scripts
         public static class Collectables
         {
             public const string coin = "GoldCoin";
+        }
+
+        public static class TimeUnits
+        {
+            public const float second = 1;
+            public const float minute = second * 60;
+            public const float hour = minute * 60;
+            public const float day = hour * 24;
         }
     }
 }
