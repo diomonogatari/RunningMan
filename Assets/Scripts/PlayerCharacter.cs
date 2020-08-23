@@ -175,8 +175,9 @@ public class PlayerCharacter : MonoBehaviour
     private void FinishGame()
     {
         //detach cam
+        Camera.main.transform.parent = null;
         //call GameStateManager.EndTheGame()
-        gsm.EndTheGame();
+        gsm.EndTheGame(false);
     }
 
     private void OnCollisionStay(Collision collision)
