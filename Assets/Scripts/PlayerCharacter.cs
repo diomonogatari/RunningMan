@@ -23,6 +23,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private bool isGrounded = true;
     private ScoreManager scoreManager;
+    private GameStateManager gsm;
     private bool isAccelerationLimited = true;
 
     private bool isImmune = false;
@@ -47,6 +48,7 @@ public class PlayerCharacter : MonoBehaviour
         currentHP = maxHP;
 
         scoreManager = FindObjectOfType<ScoreManager>();
+        gsm = FindObjectOfType<GameStateManager>();
     }
 
     // Update is called once per frame
@@ -56,6 +58,8 @@ public class PlayerCharacter : MonoBehaviour
         speedMultiply += acceleration;
         if (speedMultiply > 1 && isAccelerationLimited)
             speedMultiply = 1;
+        if (speedMultiply > 2.5f)
+            speedMultiply = 2.5f;
 
         float realSpeed = speedMultiply * speed;
         float realLeftRightSpeed = speedMultiply * leftRightSpeed;
@@ -158,6 +162,21 @@ public class PlayerCharacter : MonoBehaviour
         {
             StartNewPhase();
         }
+        if (other.tag.Equals(Constants.Tags.newPhase))
+        {
+            StartNewPhase();
+        }
+        if (other.tag.Equals(Constants.Tags.finish))
+        {
+            FinishGame();
+        }
+    }
+
+    private void FinishGame()
+    {
+        //detach cam
+        //call GameStateManager.EndTheGame()
+        gsm.EndTheGame();
     }
 
     private void OnCollisionStay(Collision collision)

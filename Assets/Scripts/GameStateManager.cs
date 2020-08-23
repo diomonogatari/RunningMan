@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour {
         hpText.text = mainCharacter.GetCurrentHp().ToString();
     }
 
-    void EndTheGame()
+    public void EndTheGame()
     {
         isGameFinished = true;
         mainCharacter.StopCharacter();
