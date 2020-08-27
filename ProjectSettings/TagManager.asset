@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - NewPhase
   - Sun
+  - EvenFaster
+  - Ground
+  - NotGround
   layers:
   - Default
   - TransparentFX

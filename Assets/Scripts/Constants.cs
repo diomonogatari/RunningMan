@@ -27,8 +27,11 @@ namespace Assets.Scripts
             public const string mainCamera = "MainCamera";
             public const string player = "Player";
             public const string newPhase = "NewPhase";
+            public const string evenFaster= "EvenFaster";
             public const string finish = "Finish";
             public const string sun = "Sun";
+            public const string ground = "Ground";
+            public const string notGround = "NotGround";
         }
 
         public static class Prefs

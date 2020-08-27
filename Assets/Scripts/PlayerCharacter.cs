@@ -25,6 +25,7 @@ public class PlayerCharacter : MonoBehaviour
     private ScoreManager scoreManager;
     private GameStateManager gsm;
     private bool isAccelerationLimited = true;
+    private bool isSuperSpeed = false;
 
     private bool isImmune = false;
 
@@ -58,6 +59,8 @@ public class PlayerCharacter : MonoBehaviour
         speedMultiply += acceleration;
         if (speedMultiply > 1 && isAccelerationLimited)
             speedMultiply = 1;
+        if (speedMultiply > 1.5f && !isSuperSpeed)
+            speedMultiply = 1.5f;
         if (speedMultiply > 2.5f)
             speedMultiply = 2.5f;
 
@@ -170,6 +173,11 @@ public class PlayerCharacter : MonoBehaviour
         {
             FinishGame();
         }
+        if (other.tag.Equals(Constants.Tags.evenFaster))
+        {
+            SuperSpeedPhase();
+        }
+
     }
 
     private void FinishGame()
@@ -182,7 +190,8 @@ public class PlayerCharacter : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        isGrounded = true;
+        if (collision.collider.tag.Equals(Constants.Tags.ground) && !collision.collider.tag.Equals(Constants.Tags.notGround))
+            isGrounded = true;
     }
 
     void StartNewPhase()
@@ -192,6 +201,10 @@ public class PlayerCharacter : MonoBehaviour
         //no speed limiter
         isAccelerationLimited = false;
         //gotta go fast
+    }
+    void SuperSpeedPhase()
+    {
+        isSuperSpeed = true;
     }
 
     #region CameraRotations
