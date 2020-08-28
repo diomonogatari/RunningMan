@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts;
 
-public class GameStateManager : MonoBehaviour {
+public class GameStateManager : MonoBehaviour
+{
 
     public GameObject gameplayUI, endUI;
 
@@ -15,21 +16,24 @@ public class GameStateManager : MonoBehaviour {
     public Text hpText, powerUpTimerText;
 
     private bool isGameFinished = false;
-    
 
-	void Update () {
+
+    void Update()
+    {
         if (!isGameFinished)
         {
-            if (mainCharacter.IsCharacterDead()) EndTheGame();
+            if (mainCharacter.IsCharacterDead())
+                EndTheGame(true);
         }
         hpText.text = mainCharacter.GetCurrentHp().ToString();
     }
 
-    void EndTheGame()
+    public void EndTheGame(bool stopTheCharacter)
     {
         isGameFinished = true;
-        mainCharacter.StopCharacter();
-    
+        if (stopTheCharacter)
+            mainCharacter.StopCharacter();
+
         scoreManager.EndGame();
 
         StartCoroutine(DelaySceneTransition());
@@ -49,7 +53,7 @@ public class GameStateManager : MonoBehaviour {
     IEnumerator DelaySceneTransition()
     {
         yield return new WaitForSeconds(2);
-     
+
         gameplayUI.SetActive(false);
         endUI.SetActive(true);
     }
