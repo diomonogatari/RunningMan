@@ -139,6 +139,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         ResetHP();
         StartImmunity();
+        scoreManager.ResetScoreMultiplier();
     }
 
     public void OnTriggerEnter(Collider other)
