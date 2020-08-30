@@ -46,7 +46,10 @@ public class GameStateManager : MonoBehaviour
 
         StartCoroutine(DelaySceneTransition());
     }
-
+    public int GetPlayerLifes()
+    {
+        return mainCharacter.GetCurrentHp();
+    }
     public void PauseGame()
     {
         if (!gameIsPaused)//if it isn't pause, it will pause
